@@ -24,6 +24,7 @@
   <main>
     <section id="intuition">
       <h2>Intuition</h2>
+      hygyuygujygyuguyguygyugyug
     </section>
 
     <section id="sde">
@@ -32,6 +33,50 @@
 
     <section id="simulation">
       <h2>Simulation</h2>
+      <div class="tool">
+  <h3>GBM Simulator (Python in-browser)</h3>
+
+  <div class="grid">
+    <label>Initial Price S0
+      <input id="S0" type="number" value="100" step="1">
+    </label>
+
+    <label>Drift μ
+      <input id="mu" type="number" value="0.05" step="0.01">
+    </label>
+
+    <label>Volatility σ
+      <input id="sigma" type="number" value="0.2" step="0.01">
+    </label>
+
+    <label>Time T (years)
+      <input id="T" type="number" value="1" step="0.1">
+    </label>
+
+    <label>Steps
+      <input id="steps" type="number" value="252" step="1" min="10">
+    </label>
+
+    <label>Paths
+      <input id="paths" type="number" value="50" step="10" min="1">
+    </label>
+  </div>
+
+  <button id="runBtn">Run Simulation</button>
+
+  <div class="outputs">
+    <div class="stat"><span>Mean terminal price</span><b id="meanST">—</b></div>
+    <div class="stat"><span>Std terminal price</span><b id="stdST">—</b></div>
+  </div>
+
+  <div id="plot" class="plot"></div>
+
+  <details class="codebox">
+    <summary>Show Python code</summary>
+    <pre><code id="pycode"></code></pre>
+  </details>
+</div>
+
     </section>
 
     <section id="disaster">
@@ -45,8 +90,11 @@
 
 
 
-  
+  <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
   <script src="main.js"></script>
+  
+
 </body>
 </html>
 <!--this still is a very basic bone structure of the website, I just named the sections we can add more later-->

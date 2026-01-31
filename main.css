@@ -1,0 +1,255 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* offsets sticky header */
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  line-height: 1.6;
+  color: #111827;           /* near-black */
+  background: #f6f7fb;      /* soft light background */
+}
+
+/* ----- Layout ----- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+header h1 {
+  margin: 0;
+  padding: 18px 18px 8px;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 18px 14px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #374151;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+  font-size: 0.95rem;
+}
+
+nav a:hover {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #111827;
+}
+
+nav a:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.35); /* soft blue ring */
+  outline-offset: 2px;
+}
+
+main {
+  max-width: 980px;
+  margin: 26px auto;
+  padding: 0 18px 48px;
+  display: grid;
+  gap: 18px;
+}
+
+/* ----- Sections (card style) ----- */
+section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px 18px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.06);
+}
+
+section h2 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+/* Optional: subtle separator under headings */
+section h2::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 10px;
+  background: #eef2f7;
+}
+
+/* ----- Text defaults ----- */
+p {
+  margin: 10px 0 0;
+  color: #374151;
+}
+
+/* Make raw text in sections look nicer */
+section {
+  color: #374151;
+}
+
+/* ----- Utility styles you can use later ----- */
+.code-block {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
+  background: #0b1220;
+  color: #e5e7eb;
+  padding: 14px;
+  border-radius: 12px;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #111827;
+}
+
+/* ----- Mobile tweaks ----- */
+@media (max-width: 520px) {
+  header h1 {
+    font-size: 1.1rem;
+  }
+
+  nav a {
+    font-size: 0.92rem;
+    padding: 7px 9px;
+  }
+
+  section {
+    padding: 16px;
+    border-radius: 14px;
+  }
+}
+/* --- Interactive tool UI --- */
+.tool h3 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  color: #111827;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0 14px;
+}
+
+.grid label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.grid input {
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+.grid input:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.25);
+  border-color: #bfdbfe;
+}
+
+button#runBtn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #111827;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+button#runBtn:hover {
+  transform: translateY(-1px);
+}
+
+button#runBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.outputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.stat {
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.stat span {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.plot {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #fff;
+  min-height: 360px;
+  padding: 8px;
+}
+
+.codebox {
+  margin-top: 12px;
+}
+
+.codebox summary {
+  cursor: pointer;
+  color: #374151;
+  font-weight: 600;
+}
+
+.codebox pre {
+  margin: 10px 0 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: #0b1220;
+  color: #e5e7eb;
+  overflow-x: auto;
+}
+
+/* mobile */
+@media (max-width: 720px) {
+  .grid { grid-template-columns: 1fr; }
+  .outputs { grid-template-columns: 1fr; }
+}
