@@ -6,6 +6,18 @@
 
   
   <link rel="stylesheet" href="main.css">
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
 </head>
 
 <body>
@@ -13,8 +25,9 @@
   <header>
     <h1>Brownian Motion & SDEs in Finance</h1>
     <nav>
-      <a href="#intuition">Intuition</a>
-      <a href="#sde">SDE</a>
+      <a href="#Indtorcution">Indtorcution</a>
+      <a href="#Backgronund and Histroy">Backgronund and Histroy</a>
+      <a href="#Brownian Motion">Brownian Motion</a>
       <a href="#simulation">Simulation</a>
       <a href="#disaster">Disaster</a>
       <a href="#pricing">Pricing</a>
@@ -22,15 +35,24 @@
   </header>
 
   <main>
-    <section id="intuition">
-      <h2>Intuition</h2>
-      hygyuygujygyuguyguygyugyugg
+    <section id="Indtorcution">
+      <h2>Indtorcution</h2>
+      AAAAAAGeometric Brownian Motion (GBM) is a mathematical framework that is used for modelling the price of stock prices. Originally derived from observations in nature, GBM uses a physical understanding of randomised motion to account for fluctuations in price. This project explores how the discovery of Brownian motion has led to our current usable model for financial modelling.  
     </section>
 
-    <section id="sde">
-      <h2>SDE Model</h2>
+    <section id="Backgronund and Histroy">
+      <h2>Backgronund and Histroy</h2>
     </section>
 
+    <section id="Brownian Motion">
+      <h2>Brownian Motion</h2>
+      However, Brownian motion showed no uses to the financial industry until mathematician Norbert Wiener defined the Wiener process in 1918. Wiener defined a way to calculate the probability of a particle taking a specific set of paths - this is known as the Wiener Measure. The Wiener process is characterised by the following properties: $$W_{t+u}-W_{t}, u \leq 0$$ The basic Wiener process can take negative values, which made it unsuitable to direct stock price modelling. Therefore the mathematical framework was adapted to create Geometric Brownian Motion (GBM), which allows price changes proportional to the current price. This model stimulates asset prices that have a natural bottom value of 0. However, it does allow the percentage change in price to become negative, i.e. the price is allowed to fall.  
+
+ 
+
+Although the GBM model provides a framework for mathematical modelling, it is most useful as a vehicle for the Black-Scholes Model. Geometric Brownian Motion by itself is excellent for modelling small-scale, random shocks, but is extremely poor at capturing extreme market jumps. This is due to the path in GBM being continuous, whereas real markets often exhibit sharp discontinuities. For example, Geometric Brownian Model would not predict events such as the 2020 COVID-19 stock crash or the 2008 financial crash.  
+    </section>
+    
     <section id="simulation">
       <h2>Simulation</h2>
       <div class="tool">
