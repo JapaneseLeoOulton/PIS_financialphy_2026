@@ -28,6 +28,7 @@
       <a href="#Indtorcution">Indtorcution</a>
       <a href="#Backgronund and Histroy">Backgronund and Histroy</a>
       <a href="#Brownian Motion">Brownian Motion</a>
+      <a href="#SDEs">SDEs</a>
       <a href="#simulation">Simulation</a>
       <a href="#disaster">Disaster</a>
       <a href="#pricing">Pricing</a>
@@ -37,21 +38,369 @@
   <main>
     <section id="Indtorcution">
       <h2>Indtorcution</h2>
-      Heloo $\int_{-3}^{3} x^2$ Geometric Brownian Motion (GBM) is a mathematical framework that is used for modelling the price of stock prices. Originally derived from observations in nature, GBM uses a physical understanding of randomised motion to account for fluctuations in price. This project explores how the discovery of Brownian motion has led to our current usable model for financial modelling.  
+      Geometric Brownian Motion (GBM) is a mathematical framework that is used for modelling the price of stock prices. Originally derived from observations in nature, GBM uses a physical understanding of randomised motion to account for fluctuations in price. This project explores how the discovery of Brownian motion has led to our current usable model for financial modelling.  
     </section>
 
     <section id="Backgronund and Histroy">
       <h2>Backgronund and Histroy</h2>
+      
+
     </section>
 
     <section id="Brownian Motion">
       <h2>Brownian Motion</h2>
-      However, Brownian motion showed no uses to the financial industry until mathematician Norbert Wiener defined the Wiener process in 1918. Wiener defined a way to calculate the probability of a particle taking a specific set of paths - this is known as the Wiener Measure. The Wiener process is characterised by the following properties: $$W_{t+u}-W_{t}, u \leq 0$$ The basic Wiener process can take negative values, which made it unsuitable to direct stock price modelling. Therefore the mathematical framework was adapted to create Geometric Brownian Motion (GBM), which allows price changes proportional to the current price. This model stimulates asset prices that have a natural bottom value of 0. However, it does allow the percentage change in price to become negative, i.e. the price is allowed to fall.  
+      <p>
+    However, Brownian motion showed no uses to the financial industry until mathematician Norbert Wiener
+    defined the Wiener process in 1918. Wiener defined a way to calculate the probability of a particle
+    taking a specific set of paths - this is known as the Wiener process.
+  </p>
+
+
+
+  <p>
+    The above illustration demonstrates the random paths that particles take in Brownian motion. The Wiener
+    process provides a mathematical way to 'track' the path of one particle and therefore predicts the final
+    position of the particle.
+  </p>
+
+  <p>
+    Although physically Brownian motion represents the motion of a particle, the Wiener process generalises
+    the idea of a particle to just represent some variable, \( W \). This variable can adopt a range of meanings,
+    including representing the stock price in financial modelling.
+  </p>
+
+  <p>The Wiener process is characterised by the following properties:</p>
+
+  <ol>
+    <li>
+      \( W(0) = 0 \) almost surely.
+      <ol type="a">
+        <li>
+          This means that the initial value of our variable \( W \) (in this case the price of the stock) starts
+          from a value of 0.
+        </li>
+      </ol>
+    </li>
+
+    <li>
+      \( W \) has independent increments: for every \( t &gt; 0 \):
+      <ol type="a">
+        <li>
+          \( W_{t+u} - W_t,\; u \ge 0, \) are independent of the past values \( W_s,\; s &lt; t. \)
+        </li>
+      </ol>
+    </li>
+
+    <li>
+      \( W \) has Gaussian increments - a time step \( u \) results in an increment that is normally distributed
+      with mean 0 and variance \( u \).
+    </li>
+
+    <li>
+      \( W \) has almost surely continuous paths: \( W_t \) is almost surely continuous in \( t \).
+      <ol type="a">
+        <li>
+          i.e. \( W \) has no sudden jumps - it passes through all intermediate values to get from one point
+          to another.
+        </li>
+      </ol>
+    </li>
+  </ol>
+   <p>
+    In the above conditions, "almost surely" is a probability term - this means that the probability
+    of the condition being true is 100%.
+  </p>
+
+ <img src="Images/Wienerprop.png" alt="GBM and it's properties" class="plot-img">
+
+  <p>
+    The basic Wiener process can take negative values, which made it unsuitable for direct stock price
+    modelling. Therefore the mathematical framework was adapted to create Geometric Brownian Motion
+    (GBM), which allows price changes proportional to the current price.
+  </p>
+
+  <p>
+    In GBM, the stock price \( S_t \) typically follows the stochastic differential equation:
+  </p>
+
+  <p>
+    \[
+      dS_t = \mu S_t \, dt + \sigma S_t \, dW_t
+    \]
+  </p>
+
+  <p>
+    This model ensures that asset prices have a natural lower bound of 0. However, it does allow
+    the percentage change in price to become negative, i.e. the price is allowed to fall.
+  </p>
+  <p>
+  Although the GBM model provides a framework for mathematical modelling, it is most useful as a vehicle
+  for the Black-Scholes Model. Geometric Brownian Motion by itself is excellent for modelling small-scale,
+  random shocks, but is extremely poor at capturing extreme market jumps. This is due to the path in GBM
+  being continuous, whereas real markets often exhibit sharp discontinuities. For example, the Geometric
+  Brownian Motion model would not predict events such as the 2020 COVID-19 stock crash or the 2008
+  financial crash.
+</p>
+
+<p>
+  The general GBM model as described above exists in many modified forms including the Geometric
+  Fractional Brownian Motion model (GFBM), the Subdiffusive GBM (sGBM) and the Mean-Reverting GBM.
+  The GFBM model incorporates an additional parameter called the Hurst parameter \( H \), which varies
+  between 0 and 1. Standard GBM has \( H = 0.5 \).
+</p>
+
+<p>
+  If \( H &gt; 0.5 \), the process being modelled has long-range dependence which means there is positive
+  correlation between future and past increments. For example, a rise in stock price is likely to be
+  followed by another rise. If \( H &lt; 0.5 \), it indicates that the process tends to return to a
+  long-range average.
+</p>
+
+
 
  
 
-Although the GBM model provides a framework for mathematical modelling, it is most useful as a vehicle for the Black-Scholes Model. Geometric Brownian Motion by itself is excellent for modelling small-scale, random shocks, but is extremely poor at capturing extreme market jumps. This is due to the path in GBM being continuous, whereas real markets often exhibit sharp discontinuities. For example, Geometric Brownian Model would not predict events such as the 2020 COVID-19 stock crash or the 2008 financial crash.  
-    </section>
+ </section>
+<section id="SDEs">
+ <h2>SDEs</h2>
+  <h3>Stochastic Differential Equations</h3>
+
+<p>
+  Stochastic differential equations represent a very powerful mathematical framework for
+  modelling systems, and it is influenced both by deterministic forces and random fluctuations.
+</p>
+
+<p>
+  In physics and finance, we understand many quantities evolve over time, from particle positions,
+  to temperature distributions and stock prices. When the future of this evolution is perfectly
+  predictable from initial conditions, we can use ordinary differential equations (ODEs).
+</p>
+
+<p>
+  A simple example is exponential growth,
+  \[
+    \frac{dx}{dt} = kx,
+  \]
+  which tells us exactly what \( x(t) \) will be at any moment in time given the initial
+  value and growth constant \( k \).
+</p>
+
+<p>
+  However, this deterministic framework breaks down when confronted with the reality of financial
+  markets. Markets are not clockwork mechanisms. They are influenced by an endless stream of
+  unpredictable factors: economic news releases, geopolitical events, shifts in investor sentiment,
+  regulatory changes, and countless individual trading decisions.
+</p>
+
+<p>
+  Each of these introduces its own small element of randomness that cannot be captured by
+  deterministic equations alone. To model these systems realistically, we need to use a mathematical
+  tool that can incorporate both the underlying trends and the inherent uncertainty, and this is
+  where stochastic differential equations enter the picture.
+</p>
+<h3>The Structure of Stochastic Differential Equations</h3>
+
+<p>
+  A stochastic differential equation combines two fundamentally different components,
+  a deterministic part which represents what would happen on average, and a stochastic
+  part capturing unpredictable fluctuations. The general form of an SDE can be written as
+</p>
+
+<p>
+  \[
+    dX = a(X,t)\,dt + b(X,t)\,dW
+  \]
+</p>
+
+<p>
+  This deceptively simple equation is a lot more sophisticated than it may look.
+  The term \( a(X,t) \) is called the drift coefficient. It represents the deterministic
+  tendency of the system, essentially the direction and rate at which \( X \) would evolve
+  in the absence of any random perturbations. In a financial context, this might represent
+  the expected return on an asset. The drift can depend on both the current state \( X \)
+  and time \( t \), allowing for complex, path-dependent behaviour.
+</p>
+
+<p>
+  The term \( b(X,t) \) is the diffusion coefficient, sometimes called the volatility function.
+  It determines the magnitude of random fluctuations, essentially how much the system can be
+  knocked around by random forces. Crucially, this can also depend on the current state,
+  meaning that uncertainty itself can be state-dependent. In financial markets, we often
+  observe that volatility increases during periods of market stress; for example, an asset
+  that has fallen sharply would likely exhibit greater price swings than one trading calmly.
+</p>
+
+<p>
+  The term \( dW \) represents an infinitesimal increment of Brownian motion, which we
+  explored in the previous section. This is the source of all randomness in the equation.
+</p>
+<p>
+  Mathematically, \( dW \) behaves like \( \sqrt{dt} \) multiplied by a standard normal
+  random variable \( Z \). This scaling is important, because it means that over longer
+  time intervals, the random effects accumulate in a specific way, growing proportionally
+  to the square root of time rather than linearly. This is fundamentally different from
+  deterministic systems and reflects the diffusive nature of random processes.
+</p>
+
+<p>
+  One might wonder why we write \( dX \) rather than a traditional derivative like
+  \[
+    \frac{dX}{dt}.
+  \]
+  This is because paths generated by SDEs are typically not differentiable in the
+  classical sense. Brownian motion, despite being continuous, has such irregular,
+  jagged paths that they have infinite variation, so you cannot compute a traditional
+  derivative at any point.
+</p>
+
+<p>
+  The notation \( dX \) represents an infinitesimal change interpreted in a specific
+  mathematical sense, either through Itô calculus or Stratonovich calculus
+  (but those are far too complex for you to do at this stage), which provide
+  rigorous foundations for manipulating these objects.
+</p>
+<h3>Geometric Brownian Motion: The Financial Standard</h3>
+
+<p>
+  The basic Wiener process can take negative values, which made it unsuitable for direct
+  stock price modelling. Stock prices, after all, cannot fall below zero; a company's
+  value may plummet, but it cannot become negative. Therefore, the mathematical framework
+  was adapted to create Geometric Brownian Motion (GBM), which ensures price changes are
+  proportional to the current price level. The model is:
+</p>
+
+<p>
+  \[
+    dS = \mu S \, dt + \sigma S \, dW
+  \]
+</p>
+
+<p>
+  This seemingly small modification, multiplying both drift and diffusion terms by \( S \),
+  has some profound consequences. The parameter \( \mu \) represents the average growth
+  rate or expected return of the asset. This is the deterministic trend component.
+  If we removed all randomness (set \( \sigma = 0 \)), the solution would be simple
+  exponential growth:
+</p>
+
+<p>
+  \[
+    S(t) = S_0 e^{\mu t}
+  \]
+</p>
+
+<p>
+  The parameter \( \sigma \) represents the volatility, a measure of how severely and
+  frequently the price fluctuates around its trend. Higher volatility means greater
+  uncertainty and larger random swings.
+</p>
+
+<p>
+  In the GBM model, volatility is constant, though more sophisticated models relax
+  this assumption. The key insight is that volatility is multiplicative, and it scales
+  with the current price \( S \). This is realistic: a £100 stock experiencing 20%
+  volatility will have absolute price swings ten times larger than a £10 stock with
+  the same percentage volatility.
+</p>
+<p>
+  The multiplicative structure ensures that \( S \) remains strictly positive for all time,
+  provided it starts positive. This is a mathematical guarantee that emerges from the
+  properties of the exponential function.
+</p>
+
+<p>
+  Even if the random term \( dW \) pushes strongly negative in a particular instant,
+  the proportional nature of the equation prevents the price from crossing zero.
+  The percentage change in price can certainly be negative when the stock falls,
+  but the price itself has a natural floor at zero.
+</p>
+
+
+FIGURE1????
+
+
+<h3>Solving Stochastic Differential Equations: The Euler-Maruyama Method</h3>
+
+<p>
+  Although GBM does have an exact analytical solution, most SDEs encountered in practice do not.
+  The drift and diffusion coefficients may be nonlinear functions of \( X \), or they could be
+  time-dependent. In these cases, we must resort to using numerical methods. The most fundamental
+  numerical method for SDEs is the Euler-Maruyama method.
+</p>
+
+<p>
+  The key idea here is that instead of trying to solve the equation all at once, we break time
+  into tiny steps and solve it piece by piece. This is called discretisation. We divide the time
+  interval \( [0, T] \) into \( N \) small steps of size
+  \[
+    \Delta t = \frac{T}{N}.
+  \]
+  We then approximate the continuous SDE by a discrete-time recursion:
+</p>
+
+<p>
+  \[
+    X(t + \Delta t) = X(t) + a(X(t), t)\,\Delta t + b(X(t), t)\,\sqrt{\Delta t}\,Z.
+  \]
+</p>
+
+<p>
+  Here, \( Z \) is a standard normal random variable, drawn independently at each time step.
+  For Geometric Brownian Motion specifically, the Euler-Maruyama scheme becomes
+</p>
+
+<p>
+  \[
+    S(t + \Delta t) = S(t) + \mu S(t)\,\Delta t + \sigma S(t)\,\sqrt{\Delta t}\,Z.
+  \]
+</p>
+
+<p>
+  The algorithm is straightforward. We begin with the initial condition \( S_0 \).
+  At each time step, we draw a random number \( Z \) from a standard normal distribution.
+  We then update the price using the formula above. We repeat this process for \( N \) steps
+  until we reach the final time \( T \). The result is a single simulated path, with one
+  possible trajectory that the stock price might follow given the model parameters.
+</p>
+<h3>Monte Carlo Simulation</h3>
+
+<p>
+  A single simulated path doesn't tell us much. It only represents one possible future out of
+  infinitely many. The true power of stochastic simulation comes from generating many paths
+  and analysing their statistical properties. This is where Monte Carlo comes in.
+</p>
+
+<p>
+  The procedure is as follows, we run the Euler-Maruyama algorithm thousands or millions of
+  times, each time with independently drawn random numbers. Each run produces a different
+  trajectory \( S_1(t), S_2(t), \ldots, S_m(t) \). From this group of runs, we can compute
+  the mean final price, the variance, percentiles for risk assessment, probabilities of
+  extreme outcomes, etc.
+</p>
+
+<p>
+  For example, to estimate the probability that a stock price exceeds £150 after one year
+  (given \( S_0 = 100 \), \( \mu = 0.08 \), and \( \sigma = 0.20 \)), we simulate
+  100,000 paths and count how many of these paths satisfy \( S(1) &gt; 150 \).
+  The fraction of paths meeting this criterion provides an estimate of the desired probability.
+</p>
+<p>
+  Monte Carlo methods are particularly valuable because they scale well to high-dimensional
+  problems. For a portfolio of \( n \) correlated assets, we can simply simulate all
+  processes simultaneously at each time step.
+</p>
+
+<p>
+  Physicists have used these same ideas for a while. Many Monte Carlo techniques were first
+  developed in physics (particularly in the Manhattan Project) before being adopted by finance.
+  The conceptual similarities between a particle undergoing molecular collisions and a stock
+  price buffeted by market forces is remarkable.
+</p>
+
+figure 2???? 
+</section>
+    
+
     
     <section id="simulation">
       <h2>Simulation</h2>
@@ -103,7 +452,43 @@ Although the GBM model provides a framework for mathematical modelling, it is mo
 
     <section id="disaster">
       <h2>Disaster Shock</h2>
+      <h3>Limitations and Extensions of Geometric Brownian Motion</h3>
+
+<p>
+  Although the GBM model provides the foundation for the Black-Scholes option pricing formula,
+  it has well-documented shortcomings when confronted with real market data. Geometric
+  Brownian Motion is excellent for modelling small-scale, continuous random fluctuations,
+  but it is fundamentally poor at capturing the extreme market movements that matter most
+  for risk management.
+</p>
+
+<p>
+  The problem lies in the assumption of continuous paths. In GBM, prices evolve smoothly
+  as an accumulation of many small steps, and there are no sudden jumps. However, real
+  financial markets exhibit fat tails. Extreme events occur far more frequently than
+  the normal distribution predicts.
+</p>
+
+<p>
+  The 1987 Black Monday crash, the 2008 financial crisis, and the March 2020 COVID-19
+  market crash all involved movements that GBM would assign probabilities of less
+  than one in several million years.
+</p>
+
+<p>
+  Furthermore, GBM assumes constant volatility \( \sigma \), independent of price level
+  or time. Typically, we know high volatility periods tend to be followed by more high
+  volatility. Volatility also typically increases when markets fall, known as the
+  leverage effect.
+</p>
+
+<p>
+  To address these limitations, researchers have developed more sophisticated models,
+  but GBM remains a useful starting point for understanding market dynamics.
+</p>
+
     </section>
+
 
     <section id="pricing">
       <h2>Pricing Output</h2>

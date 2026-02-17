@@ -253,3 +253,9 @@ button#runBtn:disabled {
   .grid { grid-template-columns: 1fr; }
   .outputs { grid-template-columns: 1fr; }
 }
+.plot-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+}
