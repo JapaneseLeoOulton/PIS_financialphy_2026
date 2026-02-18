@@ -259,3 +259,21 @@ button#runBtn:disabled {
   display: block;
   margin: 20px auto;
 }
+.viz img{
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+.viz{
+  margin: 1rem 0;
+}
+.viz figcaption{
+  text-align: center;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+  
