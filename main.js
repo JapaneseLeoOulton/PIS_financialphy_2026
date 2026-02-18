@@ -108,13 +108,9 @@ document.getElementById("meanST").textContent = Number(out.meanST).toFixed(4);
 document.getElementById("stdST").textContent = Number(out.stdST).toFixed(4);
 plotPaths(out.paths);
 
-    // clean up if it's a PyProxy
-    if (result.destroy) result.destroy();
+    
 
-    document.getElementById("meanST").textContent = Number(out.meanST).toFixed(4);
-    document.getElementById("stdST").textContent = Number(out.stdST).toFixed(4);
-    plotPaths(out.paths);
-
+    
   } catch (err) {
     console.error("Simulation error:", err);
     alert("Simulation error:\n" + (err?.message || String(err)));
@@ -130,4 +126,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const btn = document.getElementById("runBtn");
   if (btn) btn.addEventListener("click", runSimulation);
+});
+function randn() {
+  // Box-Muller
+  let u = 0, v = 0;
+  while (u === 0) u = Math.random();
+  while (v === 0) v = Math.random();
+  return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+
+function simulateGBMPath(S0, mu, sigma, T, steps) {
+  const dt = T / steps;
+  const path = new Array(steps + 1);
+  path[0] = S0;
+
+  for (let i = 1; i <= steps; i++) {
+    const z = randn();
+    const drift = (mu - 0.5 * sigma * sigma) * dt;
+    const diffusion = sigma * Math.sqrt(dt) * z;
+    path[i] = path[i - 1] * Math.exp(drift + diffusion);
+  }
+  return path;
+}
+
+function plotOnePath(elId, path) {
+  const trace = { y: path, mode: "lines", hoverinfo: "skip" };
+  const layout = {
+    title: "One GBM sample path",
+    xaxis: { title: "Step" },
+    yaxis: { title: "S(t)" },
+    margin: { l: 50, r: 20, t: 50, b: 50 },
+    showlegend: false
+  };
+  Plotly.react(elId, [trace], layout, { responsive: true });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const muSlider = document.getElementById("muSlider");
+  const sigmaSlider = document.getElementById("sigmaSlider");
+  const stepsSlider = document.getElementById("stepsSlider");
+
+  const muVal = document.getElementById("muVal");
+  const sigmaVal = document.getElementById("sigmaVal");
+  const stepsVal = document.getElementById("stepsVal");
+
+  const regenBtn = document.getElementById("regenBtn");
+
+  if (!muSlider || !sigmaSlider || !stepsSlider || !regenBtn) return;
+
+  const S0 = 100;
+  const T = 1;
+
+  function redraw() {
+    const mu = Number(muSlider.value);
+    const sigma = Number(sigmaSlider.value);
+    const steps = Number(stepsSlider.value);
+
+    muVal.textContent = mu.toFixed(2);
+    sigmaVal.textContent = sigma.toFixed(2);
+    stepsVal.textContent = steps;
+
+    const path = simulateGBMPath(S0, mu, sigma, T, steps);
+    plotOnePath("gbmPlot", path);
+  }
+
+  // Update on slider move
+  muSlider.addEventListener("input", redraw);
+  sigmaSlider.addEventListener("input", redraw);
+  stepsSlider.addEventListener("input", redraw);
+
+  // Button just regenerates a new random path with same params
+  regenBtn.addEventListener("click", redraw);
+
+  // First render
+  redraw();
 });

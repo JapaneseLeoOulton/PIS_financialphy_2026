@@ -221,13 +221,16 @@ button#runBtn:disabled {
   color: #6b7280;
 }
 
-.plot {
+.plot{
   border: 1px solid #e5e7eb;
   border-radius: 16px;
   background: #fff;
-  min-height: 360px;
+  height: 420px;
+  max-height: 420px;
+  overflow: hidden;  /* change to auto if you want scrollbars */
   padding: 8px;
 }
+
 
 .codebox {
   margin-top: 12px;
@@ -276,4 +279,7 @@ button#runBtn:disabled {
   opacity: 0.8;
   margin-top: 0.5rem;
 }
-  
+
+.grid input[type="range"]{
+  padding: 0;
+}

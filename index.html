@@ -281,6 +281,27 @@
     dS = \mu S \, dt + \sigma S \, dW
   \]
 </p>
+<div class="tool" id="gbmTool">
+  <h3>Interactive Experiment: Drift vs Volatility (GBM)</h3>
+
+  <div class="grid">
+    <label>Drift μ: <span id="muVal">0.05</span>
+      <input id="muSlider" type="range" min="-0.20" max="0.20" step="0.01" value="0.05">
+    </label>
+
+    <label>Volatility σ: <span id="sigmaVal">0.20</span>
+      <input id="sigmaSlider" type="range" min="0.00" max="1.00" step="0.01" value="0.20">
+    </label>
+
+    <label>Steps N: <span id="stepsVal">252</span>
+      <input id="stepsSlider" type="range" min="50" max="2000" step="1" value="252">
+    </label>
+  </div>
+
+  <button id="regenBtn">Regenerate path</button>
+
+  <div id="gbmPlot" class="plot"></div>
+</div>
 
 <p>
   This seemingly small modification, multiplying both drift and diffusion terms by \( S \),
