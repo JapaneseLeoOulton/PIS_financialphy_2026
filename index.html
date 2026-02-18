@@ -36,8 +36,8 @@
   </header>
 
   <main>
-    <section id="Indtorcution">
-      <h2>Indtorcution</h2>
+    <section id="Introduction">
+      <h2>Introduction</h2>
       Geometric Brownian Motion (GBM) is a mathematical framework that is used for modelling the price of stock prices. Originally derived from observations in nature, GBM uses a physical understanding of randomised motion to account for fluctuations in price. This project explores how the discovery of Brownian motion has led to our current usable model for financial modelling.  
     </section>
 
@@ -56,6 +56,31 @@
       increments. Note that $n \in \mathbb N$. 
 
       The next known observation of stochastic motion arrives from the Dutch Physicist Jans Igenhousz. He notes the irregular movement of finely powdered charcoal suspended in alcohol. Some historians claim this as the first experimental discovery of what Brown has been accredited for. However, our analysis of primary sources reveals this is likely not the case. Strict Brownian motion requires a state of thermal equilibrium, yet in Ingenhousz’s analysis, the use of uncovered alcohol created rapid evaporation. Instead, convection currents drove what Igenhousz saw. Notably, the charcoal particles he observed where roughly $100 \mu m $. Our calculations justify why this indicates he was not the first to discover Brownian motion.
+
+      The \textbf{Stokes-Einstein Equation} shows that the diffusion coefficient $D$, which measures the strength of random 'jiggling', is inversely proportional to the particle's radius $a$,
+
+\begin{equation}
+    D = \frac{k_B T}{6 \pi \eta a}
+\end{equation}
+
+To explain why Ingenhousz's observation of $100 \mu m$ charcoal particles (where $a = 50 \mu m$) fails the criteria for Brownian motion, we calculate the root mean square (RMS) displacement $\Delta x$ over a time interval $t$:
+
+\begin{equation}
+    \sqrt{\langle \Delta x^2 \rangle} = \sqrt{2Dt}
+\end{equation}
+
+Using the viscosity of ethanol ($\eta \approx 1.2 \times 10^{-3} \, \text{Pa}\cdot\text{s}$) at room temperature ($T \approx 293 \, \text{K}$), the diffusion coefficient for a particle of this size is approximately $D \approx 3.5 \times 10^{-15} \, \text{m}^2/\text{s}$. For an observation period of $t = 1 \, \text{s}$, the displacement is:
+
+\begin{equation}
+    \Delta x \approx \sqrt{2(3.5 \times 10^{-15})(1)} \approx 8.4 \times 10^{-8} \, \text{m} = 0.084 \mu m
+\end{equation}
+
+Because the displacement ($0.084 \mu m$) is less than $0.1\%$ of the particle's diameter ($100 \mu m$), the motion would be imperceptible under the microscopes of 1784. Therfore, the "violent" motion Ingenhousz saw was not stochastic diffusion, but likely convection caused by evaporation.
+
+In financial terms, this is the equivalent of a "high-beta" environment where the volatility of a single stock is completely drowned out by a massive market-wide trend. The underlying stochasticity exists, but the Péclet-like ratio of the market indicates that the systemic drift $\mu$ has overwhelmed the idiosyncratic diffusion $\sigma$.
+
+
+
 
     </section>
 
